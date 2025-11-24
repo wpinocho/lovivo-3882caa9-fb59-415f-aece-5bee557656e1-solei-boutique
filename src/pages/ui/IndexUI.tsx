@@ -34,42 +34,38 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
       className="bg-background"
     >
       {/* Hero Section - Minimalista y Elegante */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Overlay and Animation */}
         <div className="absolute inset-0">
           <img 
-            src="https://ptgmltivisbtvmoxwnhd.supabase.co/storage/v1/object/public/product-images/3882caa9-fb59-415f-aece-5bee557656e1/hero-beach.jpg"
+            src="https://ptgmltivisbtvmoxwnhd.supabase.co/storage/v1/object/public/product-images/3882caa9-fb59-415f-aece-5bee557656e1/hero-beach-waves.jpg"
             alt="Soleï Beach"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover animate-slow-zoom"
           />
-          <div className="absolute inset-0 hero-gradient opacity-70"></div>
+          <div className="absolute inset-0 hero-gradient opacity-75"></div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
-          <div className="inline-block mb-6">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 backdrop-blur-sm border border-accent/30">
-              <Sparkles className="h-4 w-4 text-accent" />
-              <span className="text-sm font-light text-accent-foreground">Hecho a Mano en México</span>
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
+          <div className="inline-block mb-8">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20">
+              <Sparkles className="h-4 w-4 text-primary-foreground" />
+              <span className="text-sm font-light text-primary-foreground tracking-wider">Hecho a Mano en México</span>
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-light text-primary-foreground mb-6 tracking-widest">
+          <h1 className="text-6xl md:text-8xl font-light text-primary-foreground mb-8 tracking-[0.3em]">
             Soleï
           </h1>
           
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-4 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-2xl md:text-3xl text-primary-foreground/95 mb-16 font-light leading-relaxed max-w-2xl mx-auto tracking-wide">
             Ropa de playa artesanal
           </p>
           
-          <p className="text-base md:text-lg text-primary-foreground/80 mb-10 font-light leading-relaxed max-w-xl mx-auto">
-            Cada pieza es única, confeccionada con amor y dedicación. Materiales sustentables, procesos artesanales, tiempo dedicado a cada detalle.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center mb-20">
             <Button 
               size="lg" 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-light tracking-wide px-8"
+              className="bg-primary-foreground/95 hover:bg-primary-foreground text-primary font-light tracking-widest px-10 py-6 text-base"
               onClick={() => {
                 const productsSection = document.getElementById('products');
                 productsSection?.scrollIntoView({ behavior: 'smooth' });
@@ -80,17 +76,21 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-light tracking-wide backdrop-blur-sm"
+              className="border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/15 font-light tracking-widest backdrop-blur-md px-10 py-6 text-base"
             >
               Nuestra Historia
             </Button>
           </div>
+
+          <p className="text-base md:text-lg text-primary-foreground/85 font-light leading-relaxed max-w-2xl mx-auto tracking-wide">
+            Cada pieza es única, confeccionada con amor y dedicación. Materiales sustentables, procesos artesanales, tiempo dedicado a cada detalle.
+          </p>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground/60"></div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-11 rounded-full border-2 border-primary-foreground/40 flex items-start justify-center p-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-primary-foreground/70"></div>
           </div>
         </div>
       </section>
