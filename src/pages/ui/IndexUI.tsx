@@ -115,7 +115,7 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
               </div>
               <h3 className="text-xl font-light tracking-wide text-foreground">Sustentable</h3>
               <p className="text-muted-foreground font-light leading-relaxed">
-                Usamos materiales de calidad con enfoque sustentable, siendo honestos sobre nuestro proceso.
+                Nos esforzamos por usar materiales sustentables cuando es posible. No somos perfectos, pero trabajamos con honestidad hacia mejores prácticas.
               </p>
             </div>
 
@@ -218,7 +218,7 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
           </p>
           <p className="text-lg text-muted-foreground font-light leading-relaxed">
             Creada en México por una sola persona, cada prenda lleva consigo la pasión por crear algo único y especial. 
-            Nos esforzamos por usar materiales sustentables cuando es posible, siendo siempre honestos sobre nuestro proceso.
+            Trabajamos con materiales de calidad, haciendo nuestro mejor esfuerzo por elegir opciones más sustentables sin pretender ser perfectos.
           </p>
         </div>
       </section>
