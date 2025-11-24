@@ -7,9 +7,7 @@ import { Mail } from 'lucide-react';
  * EDITABLE UI COMPONENT - NewsletterSection
  * 
  * Componente UI completamente editable para suscripción a newsletter.
- * El agente IA puede modificar colores, textos, layout, etc.
- * 
- * Consume lógica de HeadlessNewsletter (solo muestra email input).
+ * Versión en español para Soleï
  */
 
 export const NewsletterSection = () => {
@@ -25,21 +23,21 @@ export const NewsletterSection = () => {
                     <Mail className="h-8 w-8 text-primary" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">
-                  Thanks for subscribing!
+                <h3 className="text-2xl font-light tracking-widest text-foreground">
+                  ¡Gracias por suscribirte!
                 </h3>
-                <p className="text-muted-foreground">
-                  You'll receive our best offers and promotions soon.
+                <p className="text-muted-foreground font-light">
+                  Pronto recibirás noticias sobre nuestras nuevas colecciones.
                 </p>
               </div>
             ) : (
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-foreground">
-                    Want promotional emails?
+                  <h3 className="text-2xl font-light tracking-widest text-foreground">
+                    Suscríbete a Nuestro Newsletter
                   </h3>
-                  <p className="text-lg text-muted-foreground">
-                    Subscribe to our newsletter and get exclusive offers
+                  <p className="text-lg text-muted-foreground font-light">
+                    Recibe noticias sobre nuevas colecciones y ofertas exclusivas
                   </p>
                 </div>
                 
@@ -52,19 +50,19 @@ export const NewsletterSection = () => {
                 >
                   <Input 
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="tu@email.com"
                     value={logic.email}
                     onChange={(e) => logic.setEmail(e.target.value)}
                     disabled={logic.isSubmitting}
-                    className="flex-1"
+                    className="flex-1 font-light"
                     required
                   />
                   <Button 
                     type="submit"
                     disabled={logic.isSubmitting}
-                    className="sm:w-auto"
+                    className="sm:w-auto font-light tracking-wide"
                   >
-                    {logic.isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                    {logic.isSubmitting ? 'Suscribiendo...' : 'Suscribirse'}
                   </Button>
                 </form>
                 

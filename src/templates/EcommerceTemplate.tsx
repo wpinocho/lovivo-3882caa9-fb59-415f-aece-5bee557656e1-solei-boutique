@@ -100,30 +100,30 @@ export const EcommerceTemplate = ({
   )
 
   const footer = (
-    <div className={`bg-black text-white py-12 ${footerClassName}`}>
+    <div className={`hero-gradient text-primary-foreground py-16 ${footerClassName}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <BrandLogoLeft />
-            <p className="mt-4 text-white/70">
-              Your trusted online store
+            <h2 className="text-2xl font-light tracking-widest mb-4">Soleï</h2>
+            <p className="text-primary-foreground/80 font-light leading-relaxed">
+              Ropa de playa artesanal hecha a mano en México
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Links</h3>
+            <h3 className="font-light mb-4 tracking-wide">Enlaces</h3>
             <div className="space-y-2">
               <Link 
                 to="/" 
-                className="block text-white/70 hover:text-white transition-colors"
+                className="block text-primary-foreground/70 hover:text-primary-foreground transition-colors font-light"
               >
-                Home
+                Inicio
               </Link>
               <Link 
                 to="/blog" 
-                className="block text-white/70 hover:text-white transition-colors"
+                className="block text-primary-foreground/70 hover:text-primary-foreground transition-colors font-light"
               >
                 Blog
               </Link>
@@ -132,13 +132,13 @@ export const EcommerceTemplate = ({
 
           {/* Social Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Follow Us</h3>
+            <h3 className="font-light mb-4 tracking-wide">Síguenos</h3>
             <SocialLinks />
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-white/20 text-center text-white/70">
-          <p>&copy; 2024 Your Store. All rights reserved.</p>
+        <div className="mt-12 pt-8 border-t border-primary-foreground/20 text-center text-primary-foreground/70">
+          <p className="font-light">&copy; 2024 Soleï. Hecho con amor en México.</p>
         </div>
       </div>
     </div>
