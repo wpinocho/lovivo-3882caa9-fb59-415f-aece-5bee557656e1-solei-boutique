@@ -96,8 +96,17 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
       </section>
 
       {/* Valores Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://ptgmltivisbtvmoxwnhd.supabase.co/storage/v1/object/public/product-images/3882caa9-fb59-415f-aece-5bee557656e1/hero-beach-waves.jpg"
+            alt="Soleï Beach"
+            className="w-full h-full object-cover animate-slow-zoom"
+          />
+          <div className="absolute inset-0 bg-background/95"></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center space-y-4">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mx-auto">
@@ -134,8 +143,17 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
 
       {/* Collections Section */}
       {!loadingCollections && collections.length > 0 && (
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src="https://ptgmltivisbtvmoxwnhd.supabase.co/storage/v1/object/public/product-images/3882caa9-fb59-415f-aece-5bee557656e1/hero-beach-waves.jpg"
+              alt="Soleï Beach"
+              className="w-full h-full object-cover animate-slow-zoom"
+            />
+            <div className="absolute inset-0 bg-background/95"></div>
+          </div>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-light tracking-widest text-foreground mb-4">
                 Nuestras Colecciones
@@ -159,8 +177,17 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
       )}
 
       {/* Products Section */}
-      <section id="products" className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="products" className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://ptgmltivisbtvmoxwnhd.supabase.co/storage/v1/object/public/product-images/3882caa9-fb59-415f-aece-5bee557656e1/hero-beach-waves.jpg"
+            alt="Soleï Beach"
+            className="w-full h-full object-cover animate-slow-zoom"
+          />
+          <div className="absolute inset-0 bg-background/95"></div>
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-light tracking-widest text-foreground mb-2">
@@ -207,8 +234,17 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://ptgmltivisbtvmoxwnhd.supabase.co/storage/v1/object/public/product-images/3882caa9-fb59-415f-aece-5bee557656e1/hero-beach-waves.jpg"
+            alt="Soleï Beach"
+            className="w-full h-full object-cover animate-slow-zoom"
+          />
+          <div className="absolute inset-0 bg-background/95"></div>
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-light tracking-widest text-foreground mb-6">
             El Arte de lo Artesanal
           </h2>
