@@ -56,6 +56,12 @@ export const EcommerceTemplate = ({
           <div className="hidden md:flex items-center space-x-8">
             <nav className="flex space-x-6">
               <Link 
+                to="/products" 
+                className="text-foreground/70 hover:text-foreground transition-colors"
+              >
+                Productos
+              </Link>
+              <Link 
                 to="/blog" 
                 className="text-foreground/70 hover:text-foreground transition-colors"
               >
@@ -120,6 +126,12 @@ export const EcommerceTemplate = ({
                 className="block text-primary-foreground/70 hover:text-primary-foreground transition-colors font-light"
               >
                 Inicio
+              </Link>
+              <Link 
+                to="/products" 
+                className="block text-primary-foreground/70 hover:text-primary-foreground transition-colors font-light"
+              >
+                Productos
               </Link>
               <Link 
                 to="/blog" 

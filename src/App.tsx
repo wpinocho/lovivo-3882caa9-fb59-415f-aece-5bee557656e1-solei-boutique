@@ -14,6 +14,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { FaviconManager } from "@/components/FaviconManager";
 import Index from "./pages/Index";
 import Product from "./pages/Product";
+import Products from "./pages/Products";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
@@ -51,6 +52,7 @@ const App = () => (
                     <PageViewTracker />
                     <Routes>
                       <Route path="/" element={<Index />} />
+                      <Route path="/products" element={<Products />} />
                       <Route path="/products/:slug" element={<Product />} />
                       <Route path="/cart" element={<Cart />} />
                       <Route path="/checkout" element={<Checkout />} />
