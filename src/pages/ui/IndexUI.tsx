@@ -47,13 +47,6 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
-          <div className="inline-block mb-8">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-primary-foreground/20">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
-              <span className="text-sm font-light text-primary-foreground tracking-wider">Hecho a Mano en México</span>
-            </span>
-          </div>
-
           <h1 className="text-6xl md:text-8xl font-light text-primary-foreground mb-8 tracking-[0.3em]">
             Soleï
           </h1>
@@ -72,13 +65,6 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
               }}
             >
               Explorar Colección
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/15 font-light tracking-widest backdrop-blur-md px-10 py-6 text-base"
-            >
-              Nuestra Historia
             </Button>
           </div>
 
