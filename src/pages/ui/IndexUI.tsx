@@ -144,9 +144,19 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
               <h2 className="text-3xl md:text-4xl font-light tracking-widest text-foreground mb-4">
                 Nuestras Colecciones
               </h2>
-              <p className="text-muted-foreground font-light">
+              <p className="text-muted-foreground font-light mb-6">
                 Explora nuestras piezas artesanales
               </p>
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  const aboutSection = document.getElementById('about');
+                  aboutSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="font-light tracking-wide"
+              >
+                Conoce Nuestra Historia
+              </Button>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -220,7 +230,7 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
       </section>
 
       {/* About Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section id="about" className="relative py-20 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
