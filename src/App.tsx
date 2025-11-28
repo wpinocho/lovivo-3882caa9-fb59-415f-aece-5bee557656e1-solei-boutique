@@ -15,6 +15,7 @@ import { FaviconManager } from "@/components/FaviconManager";
 import Index from "./pages/Index";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
+import About from "./pages/About";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
@@ -54,6 +55,7 @@ const App = () => (
                       <Route path="/" element={<Index />} />
                       <Route path="/products" element={<Products />} />
                       <Route path="/products/:slug" element={<Product />} />
+                      <Route path="/about" element={<About />} />
                       <Route path="/cart" element={<Cart />} />
                       <Route path="/checkout" element={<Checkout />} />
                       <Route path="/thank-you/:orderId" element={<ThankYou />} />

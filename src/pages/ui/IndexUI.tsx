@@ -5,7 +5,8 @@ import { FloatingCart } from '@/components/FloatingCart';
 import { NewsletterSection } from '@/components/NewsletterSection';
 import { EcommerceTemplate } from '@/templates/EcommerceTemplate';
 import type { UseIndexLogicReturn } from '@/components/headless/HeadlessIndex';
-import { Sparkles, Heart, Leaf } from 'lucide-react';
+import { Sparkles, Heart, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 /**
  * EDITABLE UI - IndexUI
@@ -106,9 +107,9 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
 
             <div className="text-center space-y-4">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mx-auto">
-                <Leaf className="h-8 w-8 text-primary" />
+                <Shield className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-light tracking-wide text-foreground">Sustentable</h3>
+              <h3 className="text-xl font-light tracking-wide text-foreground">Responsable</h3>
               <p className="text-muted-foreground font-light leading-relaxed">
                 Nos esforzamos por usar materiales sustentables cuando es posible. No somos perfectos, pero trabajamos con honestidad hacia mejores prácticas.
               </p>
@@ -147,16 +148,14 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
               <p className="text-muted-foreground font-light mb-6">
                 Explora nuestras piezas artesanales
               </p>
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  const aboutSection = document.getElementById('about');
-                  aboutSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="font-light tracking-wide"
-              >
-                Conoce Nuestra Historia
-              </Button>
+              <Link to="/about">
+                <Button 
+                  variant="outline" 
+                  className="font-light tracking-wide"
+                >
+                  Conoce Nuestra Historia
+                </Button>
+              </Link>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
