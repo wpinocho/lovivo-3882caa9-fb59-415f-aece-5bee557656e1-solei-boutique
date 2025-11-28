@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -9,6 +9,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { EcommerceTemplate } from "@/templates/EcommerceTemplate"
 import { ShoppingCart, ArrowLeft, Plus, Minus } from "lucide-react"
 import { Link } from "react-router-dom"
+import { ProductCard } from "@/components/ProductCard"
+import { supabase } from "@/lib/supabase"
+import { STORE_ID } from "@/lib/config"
 
 import type { Product, ProductVariant } from "@/lib/supabase"
 
@@ -58,10 +61,86 @@ interface ProductPageUIProps {
 }
 
 export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
+  const [similarProducts, setSimilarProducts] = useState<Product[]>([])
+  const [loadingSimilar, setLoadingSimilar] = useState(false)
+
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Fetch similar products
+  useEffect(() => {
+    const fetchSimilarProducts = async () => {
+      if (!logic.product?.id) return
+      
+      setLoadingSimilar(true)
+      try {
+        // Fetch products from the same collections
+        const { data: collectionProducts, error: cpError } = await supabase
+          .from('collection_products')
+          .select('collection_id')
+          .eq('product_id', logic.product.id)
+
+        if (cpError) {
+          console.error('Error fetching collections:', cpError)
+          setLoadingSimilar(false)
+          return
+        }
+
+        if (!collectionProducts || collectionProducts.length === 0) {
+          // If no collections, fetch random products
+          const { data: randomProducts, error: rpError } = await supabase
+            .from('products')
+            .select('*')
+            .eq('status', 'active')
+            .eq('store_id', STORE_ID)
+            .neq('id', logic.product.id)
+            .limit(4)
+
+          if (!rpError && randomProducts) {
+            setSimilarProducts(randomProducts)
+          }
+          setLoadingSimilar(false)
+          return
+        }
+
+        const collectionIds = collectionProducts.map(cp => cp.collection_id)
+
+        // Get all product IDs from these collections
+        const { data: relatedProductIds, error: rpError } = await supabase
+          .from('collection_products')
+          .select('product_id')
+          .in('collection_id', collectionIds)
+          .neq('product_id', logic.product.id)
+
+        if (rpError || !relatedProductIds || relatedProductIds.length === 0) {
+          setLoadingSimilar(false)
+          return
+        }
+
+        const productIds = [...new Set(relatedProductIds.map(rp => rp.product_id))]
+
+        // Fetch the actual products
+        const { data: products, error: productsError } = await supabase
+          .from('products')
+          .select('*')
+          .eq('status', 'active')
+          .in('id', productIds)
+          .limit(4)
+
+        if (!productsError && products) {
+          setSimilarProducts(products)
+        }
+      } catch (error) {
+        console.error('Error fetching similar products:', error)
+      } finally {
+        setLoadingSimilar(false)
+      }
+    }
+
+    fetchSimilarProducts()
+  }, [logic.product?.id]);
 
   if (logic.loading) {
     return (
@@ -83,12 +162,12 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
     return (
       <EcommerceTemplate>
         <div className="text-center py-16">
-            <h1 className="text-4xl font-bold mb-4">Product not found</h1>
-            <p className="text-muted-foreground mb-8">The product you're looking for doesn't exist or has been deleted.</p>
+            <h1 className="text-4xl font-bold mb-4">Producto no encontrado</h1>
+            <p className="text-muted-foreground mb-8">El producto que buscas no existe o ha sido eliminado.</p>
             <Button asChild>
               <Link to="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to home
+                Volver al inicio
               </Link>
             </Button>
         </div>
@@ -113,7 +192,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
         {/* Product Details */}
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold">{logic.product.title}</h1>
+            <h1 className="text-3xl font-light tracking-wide">{logic.product.title}</h1>
             <div className="flex items-center gap-4 mt-2">
               <span className="text-2xl font-bold">
                 {logic.formatMoney(logic.currentPrice)}
@@ -128,7 +207,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
 
           {logic.product.description && (
             <div>
-              <h3 className="font-semibold mb-2">Description</h3>
+              <h3 className="font-semibold mb-2">Descripción</h3>
               <div 
                 className="text-muted-foreground prose prose-sm max-w-none"
                 dangerouslySetInnerHTML={{ __html: logic.product.description }}
@@ -158,7 +237,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
                         >
                           {value}
                           {!isAvailable && (
-                            <span className="ml-1 text-xs">(Out of stock)</span>
+                            <span className="ml-1 text-xs">(Agotado)</span>
                           )}
                         </Button>
                       )
@@ -173,7 +252,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <Label htmlFor="quantity" className="text-base font-medium">
-                Quantity
+                Cantidad
               </Label>
               <div className="flex items-center space-x-2">
                 <Button
@@ -210,11 +289,11 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
                 size="lg"
               >
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                {logic.inStock ? 'Add to cart' : 'Out of stock'}
+                {logic.inStock ? 'Agregar al carrito' : 'Agotado'}
               </Button>
               
               {!logic.inStock && (
-                <Badge variant="secondary">Out of stock</Badge>
+                <Badge variant="secondary">Agotado</Badge>
               )}
             </div>
           </div>
@@ -223,14 +302,14 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
           {logic.matchingVariant && (
             <Card>
               <CardContent className="pt-6">
-                <h3 className="font-semibold mb-2">Product information</h3>
+                <h3 className="font-semibold mb-2">Información del producto</h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex justify-between">
                     <span>SKU:</span>
                     <span>{logic.matchingVariant.sku || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Available stock:</span>
+                    <span>Stock disponible:</span>
                     <span>{logic.matchingVariant.inventory_quantity || 0}</span>
                   </div>
                 </div>
@@ -246,10 +325,38 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
             className="w-full"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Continue shopping
+            Seguir comprando
           </Button>
         </div>
       </div>
+
+      {/* Similar Products Section */}
+      {(similarProducts.length > 0 || loadingSimilar) && (
+        <section className="mt-16 pt-16 border-t border-border">
+          <div className="mb-8">
+            <h2 className="text-2xl md:text-3xl font-light tracking-widest text-foreground mb-2">
+              Productos Similares
+            </h2>
+            <p className="text-muted-foreground font-light">
+              Otras piezas que podrían interesarte
+            </p>
+          </div>
+
+          {loadingSimilar ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="bg-card rounded-lg h-96 animate-pulse"></div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {similarProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
+        </section>
+      )}
     </EcommerceTemplate>
   )
 }
