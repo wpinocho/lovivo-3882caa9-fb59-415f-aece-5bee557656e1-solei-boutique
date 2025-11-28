@@ -90,7 +90,7 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
             alt="Soleï Beach"
             className="w-full h-full object-cover animate-slow-zoom"
           />
-          <div className="absolute inset-0 bg-background/80"></div>
+          <div className="absolute inset-0 bg-background/70"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -137,7 +137,7 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
               alt="Soleï Beach"
               className="w-full h-full object-cover animate-slow-zoom"
             />
-            <div className="absolute inset-0 bg-background/80"></div>
+            <div className="absolute inset-0 bg-background/70"></div>
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
