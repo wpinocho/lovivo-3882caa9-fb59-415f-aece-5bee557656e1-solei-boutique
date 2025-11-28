@@ -139,15 +139,18 @@ All colors MUST be HSL.
   }
 
   .animate-slow-zoom {
-    animation: slowZoom 20s ease-in-out infinite alternate;
+    animation: slowZoom 15s ease-in-out infinite;
   }
 
   @keyframes slowZoom {
-    from {
+    0% {
       transform: scale(1);
     }
-    to {
-      transform: scale(1.1);
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 }
